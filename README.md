@@ -1,4 +1,4 @@
-# Robinhood Trader Info
+# Robinhood Trader Overview
 
 Robinhood Chain network pulse, TVL chart, top tokens by market cap, and app fee leaderboard. Powered by Tatum RPC, DexScreener, and DefiLlama.
 

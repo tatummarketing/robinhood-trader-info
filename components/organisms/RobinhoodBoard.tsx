@@ -137,12 +137,10 @@ export default function RobinhoodBoard() {
                   Robinhood Chain
                 </p>
                 <h1 className="mt-2 text-3xl font-extrabold tracking-tight md:text-4xl">
-                  Robinhood Trader Info
+                  Robinhood Trader Overview
                 </h1>
                 <p className="mt-2 text-sm leading-6 text-[#c7cadf] md:text-base">
-                  Network pulse, chain TVL, top tokens by market cap, and which
-                  apps are generating fees. Powered by Tatum RPC, DexScreener,
-                  and DefiLlama.
+                  A stapshot of trading activity on Robinhood.
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-2">

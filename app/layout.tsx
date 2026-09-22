@@ -13,9 +13,9 @@ const OG_IMAGE =
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: "Robinhood Trader Info · Tatum",
+  title: "Robinhood Trader Overview · Tatum",
   description:
-    "Robinhood Chain network pulse, TVL chart, top tokens by market cap, and app fee leaderboard. Powered by Tatum RPC.",
+    "A stapshot of trading activity on Robinhood. Live TVL, top tokens, app fees, and Tatum RPC.",
   icons: {
     icon: [{ url: "/favicon.png", type: "image/png", sizes: "32x32" }],
     apple: [
@@ -24,9 +24,8 @@ export const metadata: Metadata = {
     shortcut: "/favicon.png",
   },
   openGraph: {
-    title: "Robinhood Trader Info · Tatum",
-    description:
-      "Live Robinhood Chain TVL, fees by app, top tokens, and Tatum RPC status.",
+    title: "Robinhood Trader Overview · Tatum",
+    description: "A stapshot of trading activity on Robinhood.",
     url: SITE,
     siteName: "Tatum",
     type: "website",
@@ -36,15 +35,14 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         type: "image/png",
-        alt: "Robinhood Trader Info — Robinhood Chain dashboard by Tatum",
+        alt: "Robinhood Trader Overview by Tatum",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Robinhood Trader Info · Tatum",
-    description:
-      "Live Robinhood Chain TVL, fees by app, top tokens, and Tatum RPC status.",
+    title: "Robinhood Trader Overview · Tatum",
+    description: "A stapshot of trading activity on Robinhood.",
     images: [OG_IMAGE],
   },
 };
