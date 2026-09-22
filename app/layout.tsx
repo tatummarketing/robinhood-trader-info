@@ -8,7 +8,8 @@ const poppins = Poppins({
 });
 
 const SITE = "https://apps.tatum.io/robinhood-trader-info";
-const OG_IMAGE = `${SITE}/og.png`;
+const OG_IMAGE =
+  "https://cdn.prod.website-files.com/618a9dc0e5826661c77e6a67/6ab226c69ae1aab10968b8c3_robinhood-trader-info-og.png";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
