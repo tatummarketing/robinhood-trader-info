@@ -4,7 +4,11 @@ const API = "https://api.tatum.io";
 export { ROBINHOOD_RPC, ROBINHOOD_RPC_TESTNET } from "@/lib/constants";
 
 function apiKey() {
-  const key = process.env.TATUM_API_KEY;
+  // Cloudflare Workers bindings + local .env.local
+  const key =
+    process.env.TATUM_API_KEY ||
+    process.env.TATUM_KEY ||
+    "";
   if (!key) throw new Error("TATUM_API_KEY is not set");
   return key;
 }

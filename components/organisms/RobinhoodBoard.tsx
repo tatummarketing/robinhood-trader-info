@@ -58,16 +58,34 @@ export default function RobinhoodBoard() {
     setLoading(true);
     setError(null);
     try {
-      const [net, tvlData, appsData, tokensData] = await Promise.all([
+      const settled = await Promise.allSettled([
         fetchJson<NetworkSnapshot>(apiUrl("/api/network")),
         fetchJson<TvlPayload>(apiUrl("/api/tvl")),
         fetchJson<AppsPayload>(apiUrl("/api/apps")),
         fetchJson<TokensPayload>(apiUrl("/api/tokens")),
       ]);
-      setNetwork(net);
-      setTvl(tvlData);
-      setApps(appsData);
-      setTokens(tokensData);
+
+      const [netR, tvlR, appsR, tokensR] = settled;
+      if (netR.status === "fulfilled") setNetwork(netR.value);
+      if (tvlR.status === "fulfilled") setTvl(tvlR.value);
+      if (appsR.status === "fulfilled") setApps(appsR.value);
+      if (tokensR.status === "fulfilled") setTokens(tokensR.value);
+
+      const failures = settled.filter((r) => r.status === "rejected");
+      if (failures.length === settled.length) {
+        const first = failures[0] as PromiseRejectedResult;
+        throw first.reason instanceof Error
+          ? first.reason
+          : new Error("Failed to load dashboard");
+      }
+      if (failures.length > 0) {
+        const msgs = failures.map((r) =>
+          r.status === "rejected" && r.reason instanceof Error
+            ? r.reason.message
+            : "request failed"
+        );
+        setError(`Some data failed to load: ${[...new Set(msgs)].join("; ")}`);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to load dashboard");
     } finally {
@@ -89,25 +107,39 @@ export default function RobinhoodBoard() {
 
   return (
     <div className="mx-auto flex max-w-6xl flex-col gap-6">
-      <header className="overflow-hidden rounded-3xl bg-[#1c1e4f] text-white shadow-lg shadow-[#1c1e4f]/20">
+      <header
+        className="overflow-hidden rounded-3xl bg-[#1c1e4f] text-white shadow-lg shadow-[#1c1e4f]/20"
+        style={{
+          backgroundColor: "#1c1e4f",
+          backgroundImage: `
+            linear-gradient(
+              100deg,
+              #1c1e4f 0%,
+              #1c1e4f 36%,
+              rgba(28, 30, 79, 0.94) 50%,
+              rgba(28, 30, 79, 0.72) 68%,
+              rgba(28, 30, 79, 0.45) 100%
+            ),
+            radial-gradient(ellipse at 85% 20%, rgba(79,55,253,0.45), transparent 50%),
+            url(${apiUrl("/chains/robinhood.svg")})
+          `,
+          backgroundRepeat: "no-repeat, no-repeat, no-repeat",
+          backgroundSize:
+            "100% 100%, 100% 100%, auto clamp(220px, 38vw, 460px)",
+          backgroundPosition: "0 0, 0 0, right -18px bottom -8px",
+        }}
+      >
         <div className="relative px-5 py-8 md:px-8 md:py-10">
-          <div
-            className="pointer-events-none absolute inset-0 opacity-40"
-            style={{
-              background:
-                "radial-gradient(ellipse at 85% 20%, rgba(79,55,253,0.55), transparent 50%), radial-gradient(ellipse at 10% 90%, rgba(44,205,154,0.25), transparent 45%)",
-            }}
-          />
           <div className="relative flex flex-col gap-6">
             <div className="flex flex-wrap items-start justify-between gap-4">
-              <div>
+              <div className="max-w-xl">
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#a5a8c7]">
                   Robinhood Chain
                 </p>
                 <h1 className="mt-2 text-3xl font-extrabold tracking-tight md:text-4xl">
                   Robinhood Trader Info
                 </h1>
-                <p className="mt-2 max-w-xl text-sm leading-6 text-[#c7cadf] md:text-base">
+                <p className="mt-2 text-sm leading-6 text-[#c7cadf] md:text-base">
                   Network pulse, chain TVL, top tokens by market cap, and which
                   apps are generating fees. Powered by Tatum RPC, DexScreener,
                   and DefiLlama.
