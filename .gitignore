@@ -34,7 +34,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-.env*
+.env
+.env.*
+!.env.example
 
 # Webflow Cloud / OpenNext (generated on deploy)
 .open-next/

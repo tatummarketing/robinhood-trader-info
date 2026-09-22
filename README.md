@@ -1,39 +1,46 @@
 # Robinhood Trader Info
 
-Tatum mini-app for Robinhood Chain: live network pulse (Tatum RPC), chain TVL chart, and app fees / revenue leaderboard (DefiLlama).
+Robinhood Chain network pulse, TVL chart, top tokens by market cap, and app fee leaderboard. Powered by Tatum RPC, DexScreener, and DefiLlama.
 
-Style and structure follow [What's Pumping](https://github.com/tatummarketing/whats-pumping) (Tatum design system).
+**Live:** [https://apps.tatum.io/robinhood-trader-info](https://apps.tatum.io/robinhood-trader-info)
+
+Style and structure follow [What's Pumping](https://github.com/tatummarketing/whats-pumping).
 
 ## Features
 
-- Dark hero with KPIs: TVL, app fees 24h, gas, latest block, top fee app
+- Dark hero with KPIs: TVL, app fees 24h, top token, gas, latest block
+- Top 10 tokens by market cap (DexScreener) with contract links
 - Tatum RPC banner (mainnet / testnet copy)
 - Historical Robinhood Chain TVL chart
 - App table sortable by fees or TVL (native badge for Robinhood-only deploys)
+- API proxy safety: host allowlist, rate limits, minimal payloads
 
 ## Setup
 
 ```bash
 cp .env.example .env.local
-# set TATUM_API_KEY
+# TATUM_API_KEY=...
+
 npm install
 npm run dev
 ```
 
-Open http://localhost:3000 .
+Open [http://localhost:3000](http://localhost:3000).
 
 ## Webflow Cloud
 
-Deploy under mount `/robinhood-trader-info`.
+Deployed to the **Tatum Apps** site at mount `/robinhood-trader-info`.
 
-Set `TATUM_API_KEY` (secret) and optionally `NEXT_PUBLIC_BASE_PATH=/robinhood-trader-info`.
+```bash
+webflow auth login
+webflow cloud deploy \
+  --site-id 618a9dc0e5826661c77e6a67 \
+  --environment production \
+  --mount /robinhood-trader-info \
+  --app-name robinhood-trader-info \
+  --auto-publish
+```
 
-## API proxy safety
+After the first deploy, add `--app-id <id>` from `webflow.json` for redeploys.
 
-All `/api/*` routes:
-
-- **Host allowlist** — only allowlisted `Origin` / `Referer` / same-origin hosts (`API_ALLOWED_HOSTS`)
-- **Rate limiting** — per client IP + route (`API_RATE_LIMIT`, `API_RATE_WINDOW_MS`)
-- **Minimal payloads** — shaped DTOs only (no raw upstream dumps; TVL series capped; top apps/tokens capped)
-- **GET only** — other methods return 405
-- **Safe errors** — production responses omit upstream/stack details
+Set `TATUM_API_KEY` (secret) and optionally `NEXT_PUBLIC_BASE_PATH=/robinhood-trader-info` in the Cloud environment variables dashboard, then redeploy.
