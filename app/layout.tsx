@@ -7,8 +7,11 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
+const SITE = "https://apps.tatum.io/robinhood-trader-info";
+const OG_IMAGE = `${SITE}/og.png`;
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://apps.tatum.io/robinhood-trader-info"),
+  metadataBase: new URL(SITE),
   title: "Robinhood Trader Info · Tatum",
   description:
     "Robinhood Chain network pulse, TVL chart, top tokens by market cap, and app fee leaderboard. Powered by Tatum RPC.",
@@ -22,16 +25,26 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Robinhood Trader Info · Tatum",
     description:
-      "Live Robinhood Chain TVL, fees by app, and Tatum RPC status.",
-    url: "https://apps.tatum.io/robinhood-trader-info",
+      "Live Robinhood Chain TVL, fees by app, top tokens, and Tatum RPC status.",
+    url: SITE,
     siteName: "Tatum",
     type: "website",
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        type: "image/png",
+        alt: "Robinhood Trader Info — Robinhood Chain dashboard by Tatum",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Robinhood Trader Info · Tatum",
     description:
-      "Live Robinhood Chain TVL, fees by app, and Tatum RPC status.",
+      "Live Robinhood Chain TVL, fees by app, top tokens, and Tatum RPC status.",
+    images: [OG_IMAGE],
   },
 };
 
