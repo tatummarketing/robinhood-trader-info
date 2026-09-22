@@ -5,6 +5,7 @@
     "framework_version": "15.5.25",
     "entrypoint_path": "./worker.js",
     "deployment_type": "ssr",
-    "skip_no_bundle": false
+    "skip_no_bundle": false,
+    "app_id": "695f2230-b394-42b0-b9e5-e9e848f82eda"
   }
 }

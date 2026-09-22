@@ -35,12 +35,10 @@ Deployed to the **Tatum Apps** site at mount `/robinhood-trader-info`.
 webflow auth login
 webflow cloud deploy \
   --site-id 618a9dc0e5826661c77e6a67 \
+  --app-id 695f2230-b394-42b0-b9e5-e9e848f82eda \
   --environment production \
   --mount /robinhood-trader-info \
-  --app-name robinhood-trader-info \
   --auto-publish
 ```
-
-After the first deploy, add `--app-id <id>` from `webflow.json` for redeploys.
 
 Set `TATUM_API_KEY` (secret) and optionally `NEXT_PUBLIC_BASE_PATH=/robinhood-trader-info` in the Cloud environment variables dashboard, then redeploy.
