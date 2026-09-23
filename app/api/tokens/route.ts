@@ -264,16 +264,13 @@ export async function GET(req: NextRequest) {
   if (blocked) return blocked;
 
   try {
-    let best = await fromDexScreener();
-    let source = "DexScreener";
-
-    if (best.size < 10) {
-      const gecko = await fromGeckoTerminal();
-      if (gecko.size > best.size) {
-        best = gecko;
-        source = "GeckoTerminal";
-      }
-    }
+    const [dex, gecko] = await Promise.all([
+      fromDexScreener(),
+      fromGeckoTerminal(),
+    ]);
+    const useGecko = gecko.size >= dex.size;
+    const best = useGecko ? gecko : dex;
+    const source = useGecko ? "GeckoTerminal" : "DexScreener";
 
     const payload = await toPayload(best, source);
     return apiJson(req, payload, {
