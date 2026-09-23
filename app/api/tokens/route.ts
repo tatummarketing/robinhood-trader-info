@@ -7,7 +7,7 @@ import {
 import type { ChainToken, TokensPayload } from "@/lib/types";
 
 const DEX = "https://api.dexscreener.com/latest/dex/search";
-const MAX_TOKENS = 10;
+const MAX_TOKENS = 25;
 const QUERIES = [
   "ETH",
   "USDC",

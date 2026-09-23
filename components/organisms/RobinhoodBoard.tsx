@@ -282,11 +282,11 @@ export default function RobinhoodBoard() {
         <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
           <div>
             <h2 className="text-xl font-bold tracking-tight text-[#111827]">
-              Top 10 tokens by market cap
+              Top tokens by market cap
             </h2>
             <p className="mt-1 text-sm text-[#6b7280]">
-              Live Robinhood Chain tokens ranked by market cap, with contract
-              address and 24h change.
+              Live Robinhood Chain tokens ranked by market cap. Top 10 free;
+              unlock the full ranking with a Tatum API key.
             </p>
           </div>
           {topToken ? (
