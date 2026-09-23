@@ -3,7 +3,7 @@ import { apiError, apiJson, guardApiRequest, pick } from "@/lib/api-guard";
 import { ROBINHOOD_CHAIN_NAME, llamaFetch } from "@/lib/defillama";
 import type { AppMetric, AppsPayload } from "@/lib/types";
 
-const MAX_APPS = 25;
+const MAX_APPS = 15;
 
 type LlamaProtocol = {
   name: string;

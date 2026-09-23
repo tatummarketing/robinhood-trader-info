@@ -285,79 +285,11 @@ export default function RobinhoodBoard() {
         <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
           <div>
             <h2 className="text-xl font-bold tracking-tight text-[#111827]">
-              Top tokens by market cap
-            </h2>
-            <p className="mt-1 text-sm text-[#6b7280]">
-              Live Robinhood Chain tokens ranked by market cap. Top 7 free;
-              unlock the full ranking with a Tatum API key.
-            </p>
-          </div>
-          {topToken ? (
-            <p className="text-sm font-semibold text-[#111827]">
-              #1 {topToken.symbol} · {formatUsd(topToken.marketCap)}
-            </p>
-          ) : null}
-        </div>
-        {tokens?.tokens?.length ? (
-          <TokensTable tokens={tokens.tokens} />
-        ) : (
-          <p className="py-8 text-center text-sm text-[#6b7280]">
-            No token rankings yet
-          </p>
-        )}
-        <p className="mt-4 text-xs text-[#6b7280]">
-          Updated{" "}
-          {tokens?.updatedAt
-            ? new Date(tokens.updatedAt).toLocaleString()
-            : "n/a"}
-        </p>
-      </section>
-
-      <section className="rounded-3xl border border-[#e6e8ef] bg-white p-5 shadow-sm md:p-6">
-        <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <h2 className="text-xl font-bold tracking-tight text-[#111827]">
-              Robinhood Chain TVL
-            </h2>
-            <p className="mt-1 text-sm text-[#6b7280]">
-              Historical total value locked
-              {tvl?.change7d != null ? (
-                <>
-                  {" "}
-                  · 7d{" "}
-                  <span
-                    className={
-                      tvl.change7d >= 0 ? "text-[#059669]" : "text-[#dc2626]"
-                    }
-                  >
-                    {formatPercent(tvl.change7d)}
-                  </span>
-                </>
-              ) : null}
-            </p>
-          </div>
-          <p className="text-2xl font-extrabold tabular-nums text-[#111827]">
-            {formatUsd(tvl?.currentTvl)}
-          </p>
-        </div>
-        <TvlChart series={tvl?.series ?? []} />
-        <p className="mt-3 text-xs text-[#6b7280]">
-          Source: {tvl?.source ?? "DefiLlama"} · updated{" "}
-          {tvl?.updatedAt
-            ? new Date(tvl.updatedAt).toLocaleString()
-            : "n/a"}
-        </p>
-      </section>
-
-      <section className="rounded-3xl border border-[#e6e8ef] bg-white p-5 shadow-sm md:p-6">
-        <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <h2 className="text-xl font-bold tracking-tight text-[#111827]">
               App fees & TVL
             </h2>
             <p className="mt-1 text-sm text-[#6b7280]">
-              Which apps are generating fees on Robinhood Chain. Native means
-              deploy only on this chain.
+              Apps on Robinhood Chain by fees and TVL. Top 7 free; unlock the
+              full ranking with a Tatum API key.
               {topTvl ? (
                 <>
                   {" "}
@@ -398,9 +330,78 @@ export default function RobinhoodBoard() {
           </p>
         )}
         <p className="mt-4 text-xs text-[#6b7280]">
-          Fees and revenue from DefiLlama when reported. Apps without fee data
-          show as n/a. TVL is scoped to Robinhood Chain via DefiLlama{" "}
-          <code className="rounded bg-[#f3f4f8] px-1">chainTvls</code>.
+          Updated{" "}
+          {apps?.updatedAt
+            ? new Date(apps.updatedAt).toLocaleString()
+            : "n/a"}
+        </p>
+      </section>
+
+      <section className="rounded-3xl border border-[#e6e8ef] bg-white p-5 shadow-sm md:p-6">
+        <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h2 className="text-xl font-bold tracking-tight text-[#111827]">
+              Robinhood Chain TVL
+            </h2>
+            <p className="mt-1 text-sm text-[#6b7280]">
+              Historical total value locked
+              {tvl?.change7d != null ? (
+                <>
+                  {" "}
+                  · 7d{" "}
+                  <span
+                    className={
+                      tvl.change7d >= 0 ? "text-[#059669]" : "text-[#dc2626]"
+                    }
+                  >
+                    {formatPercent(tvl.change7d)}
+                  </span>
+                </>
+              ) : null}
+            </p>
+          </div>
+          <p className="text-2xl font-extrabold tabular-nums text-[#111827]">
+            {formatUsd(tvl?.currentTvl)}
+          </p>
+        </div>
+        <TvlChart series={tvl?.series ?? []} />
+        <p className="mt-3 text-xs text-[#6b7280]">
+          Updated{" "}
+          {tvl?.updatedAt
+            ? new Date(tvl.updatedAt).toLocaleString()
+            : "n/a"}
+        </p>
+      </section>
+
+      <section className="rounded-3xl border border-[#e6e8ef] bg-white p-5 shadow-sm md:p-6">
+        <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h2 className="text-xl font-bold tracking-tight text-[#111827]">
+              Top tokens by market cap
+            </h2>
+            <p className="mt-1 text-sm text-[#6b7280]">
+              Live Robinhood Chain tokens ranked by market cap. Top 7 free;
+              unlock the full ranking with a Tatum API key.
+            </p>
+          </div>
+          {topToken ? (
+            <p className="text-sm font-semibold text-[#111827]">
+              #1 {topToken.symbol} · {formatUsd(topToken.marketCap)}
+            </p>
+          ) : null}
+        </div>
+        {tokens?.tokens?.length ? (
+          <TokensTable tokens={tokens.tokens} />
+        ) : (
+          <p className="py-8 text-center text-sm text-[#6b7280]">
+            No token rankings yet
+          </p>
+        )}
+        <p className="mt-4 text-xs text-[#6b7280]">
+          Updated{" "}
+          {tokens?.updatedAt
+            ? new Date(tokens.updatedAt).toLocaleString()
+            : "n/a"}
         </p>
       </section>
 
