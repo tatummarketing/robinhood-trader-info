@@ -176,7 +176,10 @@ export default function RobinhoodBoard() {
                 {
                   label: "App fees 24h",
                   value: formatUsd(apps?.totalFees24h),
-                  hint: "DefiLlama",
+                  hint:
+                    apps?.apps?.length != null
+                      ? `${apps.apps.length} apps`
+                      : "24h",
                   hintClass: "text-[#a5a8c7]",
                 },
                 {
@@ -184,7 +187,7 @@ export default function RobinhoodBoard() {
                   value: topToken?.symbol ?? "n/a",
                   hint: topToken
                     ? formatUsd(topToken.marketCap)
-                    : "DexScreener",
+                    : "n/a",
                   hintClass: "text-[#2ccd9a]",
                 },
                 {
@@ -285,7 +288,7 @@ export default function RobinhoodBoard() {
               Top tokens by market cap
             </h2>
             <p className="mt-1 text-sm text-[#6b7280]">
-              Live Robinhood Chain tokens ranked by market cap. Top 10 free;
+              Live Robinhood Chain tokens ranked by market cap. Top 7 free;
               unlock the full ranking with a Tatum API key.
             </p>
           </div>
@@ -303,7 +306,7 @@ export default function RobinhoodBoard() {
           </p>
         )}
         <p className="mt-4 text-xs text-[#6b7280]">
-          Source: {tokens?.source ?? "DexScreener"} · updated{" "}
+          Updated{" "}
           {tokens?.updatedAt
             ? new Date(tokens.updatedAt).toLocaleString()
             : "n/a"}

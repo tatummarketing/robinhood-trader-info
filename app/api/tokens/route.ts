@@ -9,7 +9,7 @@ import type { ChainToken, TokensPayload } from "@/lib/types";
 const DEX = "https://api.dexscreener.com/latest/dex/search";
 const GECKO_POOLS =
   "https://api.geckoterminal.com/api/v2/networks/robinhood/pools";
-const MAX_TOKENS = 25;
+const MAX_TOKENS = 15;
 const QUERIES = [
   "ETH",
   "USDC",

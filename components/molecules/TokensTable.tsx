@@ -4,7 +4,7 @@ import type { ChainToken } from "@/lib/types";
 import { clsxm, formatPercent, formatUsd, shortenAddress } from "@/lib/utils";
 import { ROBINHOOD_EXPLORER } from "@/lib/constants";
 
-const FREE_LIMIT = 10;
+const FREE_LIMIT = 7;
 const CTA_URL = "https://dashboard.tatum.io/";
 
 type Props = {
@@ -89,7 +89,7 @@ function TokenRow({ token }: { token: ChainToken }) {
   );
 }
 
-const FULL_RANKING = 25;
+const FULL_RANKING = 15;
 
 function placeholderToken(rank: number): ChainToken {
   return {
@@ -138,7 +138,7 @@ export default function TokensTable({ tokens }: Props) {
       </table>
 
       {showGate ? (
-        <div className="relative mt-0 min-h-[280px] overflow-hidden rounded-b-2xl">
+        <div className="relative mt-0 min-h-[220px] overflow-hidden rounded-b-2xl">
           <div
             className="pointer-events-none select-none blur-[6px] opacity-55"
             aria-hidden
