@@ -89,10 +89,32 @@ function TokenRow({ token }: { token: ChainToken }) {
   );
 }
 
+const FULL_RANKING = 25;
+
+function placeholderToken(rank: number): ChainToken {
+  return {
+    rank,
+    name: "Locked Token",
+    symbol: "••••",
+    address: `0x${"0".repeat(40)}`,
+    marketCap: 1_000_000 / rank,
+    priceUsd: 1,
+    liquidityUsd: 100_000 / rank,
+    priceChange24h: rank % 2 === 0 ? 0.012 : -0.008,
+    imageUrl: null,
+  };
+}
+
 export default function TokensTable({ tokens }: Props) {
   const visible = tokens.slice(0, FREE_LIMIT);
-  const locked = tokens.slice(FREE_LIMIT);
-  const showGate = locked.length > 0;
+  const realLocked = tokens.slice(FREE_LIMIT);
+  const showGate = visible.length >= FREE_LIMIT;
+  const locked =
+    realLocked.length > 0
+      ? realLocked
+      : Array.from({ length: FULL_RANKING - FREE_LIMIT }, (_, i) =>
+          placeholderToken(FREE_LIMIT + 1 + i)
+        );
 
   return (
     <div className="overflow-x-auto">
@@ -116,27 +138,30 @@ export default function TokensTable({ tokens }: Props) {
       </table>
 
       {showGate ? (
-        <div className="relative mt-0 overflow-hidden rounded-b-2xl">
+        <div className="relative mt-0 min-h-[280px] overflow-hidden rounded-b-2xl">
           <div
-            className="pointer-events-none select-none blur-[6px] opacity-60"
+            className="pointer-events-none select-none blur-[6px] opacity-55"
             aria-hidden
           >
             <table className="w-full min-w-[760px] border-collapse text-left text-sm">
               <tbody>
-                {locked.map((token) => (
-                  <TokenRow key={token.address} token={token} />
+                {locked.map((token, i) => (
+                  <TokenRow
+                    key={`${token.address}-${token.rank}-${i}`}
+                    token={token}
+                  />
                 ))}
               </tbody>
             </table>
           </div>
-          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-white/40 via-white/75 to-white/95 px-4">
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-white/30 via-white/80 to-white px-4">
             <div className="max-w-md rounded-2xl border border-[#e6e8ef] bg-white/95 px-5 py-5 text-center shadow-lg shadow-[#1c1e4f]/10 backdrop-blur-sm">
               <p className="text-base font-bold tracking-tight text-[#111827]">
                 Unlock the full ranking with your API key
               </p>
               <p className="mt-1.5 text-sm leading-5 text-[#6b7280]">
                 Top {FREE_LIMIT} are free. Get a Tatum API key to see the rest of
-                the top {tokens.length} by market cap.
+                the top {FULL_RANKING} by market cap.
               </p>
               <a
                 href={CTA_URL}
