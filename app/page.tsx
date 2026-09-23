@@ -44,7 +44,7 @@ export default function Home() {
 
       <footer className="border-t border-[#e6e8ef] bg-white">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 text-sm text-[#6b7280] md:flex-row md:items-center md:justify-between md:px-6">
-          <p>Built with Tatum Gateway RPC</p>
+          <p>Built with Tatum Gateway RPC and Data API.</p>
           <div className="flex flex-wrap gap-x-4 gap-y-2 font-medium">
             <a
               href="https://docs.tatum.io/reference/rpc-robinhood"
