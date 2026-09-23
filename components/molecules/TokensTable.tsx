@@ -159,10 +159,6 @@ export default function TokensTable({ tokens }: Props) {
               <p className="text-base font-bold tracking-tight text-[#111827]">
                 Unlock the full ranking with your API key
               </p>
-              <p className="mt-1.5 text-sm leading-5 text-[#6b7280]">
-                Top {FREE_LIMIT} are free. Get a Tatum API key to see the rest of
-                the top {FULL_RANKING} by market cap.
-              </p>
               <a
                 href={CTA_URL}
                 target="_blank"

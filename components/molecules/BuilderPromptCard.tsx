@@ -25,7 +25,7 @@ export default function BuilderPromptCard() {
       className="overflow-hidden rounded-3xl border border-[#d5d3fe] bg-gradient-to-br from-[#1c1e4f] via-[#2a1f7a] to-[#4f37fd] p-5 text-white shadow-lg shadow-[#4f37fd]/20 md:p-6"
       aria-labelledby="builder-heading"
     >
-      <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+      <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
         <div className="max-w-xl">
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#c4b5fd]">
             Tatum Builder
