@@ -44,10 +44,7 @@ export default function Home() {
 
       <footer className="border-t border-[#e6e8ef] bg-white">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 text-sm text-[#6b7280] md:flex-row md:items-center md:justify-between md:px-6">
-          <p>
-            Built with Tatum Gateway RPC · TVL and fees via DefiLlama · tokens via
-            DexScreener
-          </p>
+          <p>Built with Tatum Gateway RPC</p>
           <div className="flex flex-wrap gap-x-4 gap-y-2 font-medium">
             <a
               href="https://docs.tatum.io/reference/rpc-robinhood"
@@ -64,14 +61,6 @@ export default function Home() {
               className="text-[#4f37fd] hover:underline"
             >
               Tatum Builder
-            </a>
-            <a
-              href="https://defillama.com/chain/Robinhood%20Chain"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#4f37fd] hover:underline"
-            >
-              DefiLlama
             </a>
             <a
               href="https://dashboard.tatum.io"
