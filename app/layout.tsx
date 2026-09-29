@@ -16,13 +16,6 @@ export const metadata: Metadata = {
   title: "Robinhood Trader Overview · Tatum",
   description:
     "A stapshot of trading activity on Robinhood. Live TVL, top tokens, app fees, and Tatum RPC.",
-  icons: {
-    icon: [{ url: "/favicon.png", type: "image/png", sizes: "32x32" }],
-    apple: [
-      { url: "/apple-touch-icon.png", type: "image/png", sizes: "256x256" },
-    ],
-    shortcut: "/favicon.png",
-  },
   openGraph: {
     title: "Robinhood Trader Overview · Tatum",
     description: "A stapshot of trading activity on Robinhood.",
