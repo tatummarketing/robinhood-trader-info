@@ -15,6 +15,7 @@ body {
   color: var(--tatum-ink);
   background: var(--tatum-bg);
   min-height: 100vh;
+  font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
 }
 
 ::selection {
